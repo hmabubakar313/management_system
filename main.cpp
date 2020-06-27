@@ -2,16 +2,20 @@
 #include <ctime>
 #include <cstdlib>
 #include <string>
+// #include <cstring>
+#include <cmath>
+using namespace std;
 class Employe
 {
-    protected:
-    string key,customer_id,account_number,first_name,last_name,cust_father_name,cust_mother_name,cust_cnic;
+    public:
+    string account_number,first_name,last_name,cust_father_name,cust_mother_name,cust_cnic;
+    int key,customer_id;
     //*setter and getter start from here
-    void set_cust_id(string ci)
+    void set_cust_id(int ci)
     {
         customer_id = ci;
     }
-    string get_cust_id()
+    int get_cust_id()
     {
         return customer_id;
     }
@@ -47,11 +51,11 @@ class Employe
     {
         return cust_father_name;
     }
-        void set_mother_name(string m_n)
+    void set_mother_name(string m_n)
     {
         cust_mother_name = m_n;
     }
-    string get_cust_id()
+    string get_mother_name()
     {
         return cust_mother_name;
     }
@@ -59,49 +63,55 @@ class Employe
     {
         cust_cnic = c_cnic;
     }
-    string get_cust_id()
+    string get_cust_cnic()
     {
         return cust_cnic;
     }
-    void set_key(string k)
+    void set_key(int k)
     {
         key = k;
     }
-    string get_key()
+    int get_key()
     {
         return key;
     }
     //!setter and getter end here
+    
+    
 };
 class Customer :public Employe
 {
-void get_data()
-{
-    cout<<"Welcome to the ----- Bank\n";           //!stylling for Aqib
-    cout<<"Enter Your First Name\n";
-    cin>>first_name;
-    cout<<"Enter Your Last Name\n";
-    cin>>last_name;
-    cout<<"Enter Your father Name\n";
-    cin>>cust_father_name;
-    cout<<"Enter Your Mother Name\n";
-    cin>>cust_mother_name;
-    cout<<"Enter Your CNIC\n";
-    cin>>cust_cnic;
-    cout<<"Press 1 to generate customer ID\n";
-    cin>>key;
-    // * generating customer id
-     if (int(key)==1) //we took key as string here it create error for comparing int w/ string therfore i use int 
-     {
-         customer_id = rand() % 100;
-     }
-     cout<<"Congratulation your account created and your Customer ID is :"<<customer_id<<endl;
+    public:
+        void get_data()
+        {
+            cout<<"Welcome to the ----- Bank\n";           //!stylling for Aqib
+            cout<<"Enter Your First Name\n";
+            cin>>first_name;
+            cout<<"Enter Your Last Name\n";
+            cin>>last_name;
+            cout<<"Enter Your father Name\n";
+            cin>>cust_father_name;
+            cout<<"Enter Your Mother Name\n";
+            cin>>cust_mother_name;
+            cout<<"Enter Your CNIC\n";
+            cin>>cust_cnic;
+            cout<<"Press 1 to generate customer ID\n";
+            cin>>key;
+            // * generating customer id
+            if (key==1) 
+            {
+                srand(time(0));
+                customer_id = (rand() % 100) + 1; // use for random number
+            }
+            cout<<"Congratulation your account created and your Customer ID is : 00"<<customer_id<<endl;
 
-}
+        }
 
 };
-using namespace std;
+
 int main()
 {
-    cout<<"Hello World\n";
+    Customer cust_obj;
+    cust_obj.get_data();
+    return 0;   
 }
